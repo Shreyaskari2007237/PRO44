@@ -39,7 +39,7 @@ class Game{
         
                 form.hide();
                 Player.getPlayerInfo();
-                Player.getfinishedPlayers();
+               // Player.getfinishedPlayers();
                  image(back_img, 0, 0, 1000, 800);
                  var x =100;
                  var y=200;
@@ -61,7 +61,7 @@ class Game{
 
                          textSize(20);
                          fill("black");
-                         text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
+                         text(allPlayers[plr].name ,x-25,y+25);
                      }
                     
                      //text to display player score.
@@ -79,19 +79,6 @@ class Game{
                     player.distance += 10
                     player.update();
                 }
-                if(player1.distance>3770){
-                    gameState=2;
-                    player1.score=player1.score+1;
-                    text("Player1 :"+player1.score,100,-3000);
-                    player1.updatefinishedPlayers();
-                }
-                if(player2.distance>3770){
-                    gameState=2;
-                    player2.score=player2.score+1;
-                    text("Player2 :"+player2.score,100,-3000);
-                    player2.updatefinishedPlayers();
-                }
-            
                  if (frameCount % 20 === 0) {
                      fruits = createSprite(random(100, 1000), 0, 100, 100);
                      fruits.velocityY = 6;
@@ -112,16 +99,13 @@ class Game{
                      
                  }
                  
-                  if (player.index !== null) {
-                     //fill code here, to destroy the objects. (Use the one in the class project 39)
-                     // add the condition to calculate the score. and use update ti update the values in the database.
-                  }
-                
-
-         
-         
-        
-         
+                 if(player.index !== null) {
+                    for(var i = 0;i<fruitGroup.length;i++){ 
+                        if(fruitGroup.get(i).isTouching(players)){ 
+                           fruitGroup.get(i).destroy(); player.score = player.score + 1; player.update();
+                             } 
+                            } 
+                 }               
 
     }
 
